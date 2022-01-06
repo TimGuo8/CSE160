@@ -46,7 +46,10 @@
     add(other) {
         // Insert your code here.
         // This function should change this vector (this.elements) and not create a new vector.
+    
 
+        this.elements[0] += other.elements[0];
+        this.elements[1] += other.elements[1];
         // Don't delete the return statement.
         return this;
     };
@@ -58,7 +61,8 @@
     sub(other) {
         // Insert your code here.
         // This function should change this vector (this.elements) and not create a new vector.
-
+        this.elements[0] -= other.elements[0];
+        this.elements[1] -= other.elements[1];
         // Don't delete the return statement.
         return this;
     };
@@ -70,7 +74,8 @@
     div(scalar) {
         // Insert your code here.
         // This function should change this vector (this.elements) and not create a new vector.
-
+        this.elements[0] =  this.elements[0]/scalar;
+        this.elements[1] =  this.elements[1]/ scalar;
         // Don't delete the return statement.
         return this;
     };
@@ -82,7 +87,8 @@
     mul(scalar) {
         // Insert your code here.
         // This function should change this vector (this.elements) and not create a new vector.
-
+        this.elements[0] =  this.elements[0]*scalar;
+        this.elements[1] =  this.elements[1] *scalar;
         // Don't delete the return statement.
         return this;
     };

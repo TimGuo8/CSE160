@@ -1,14 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <title>asg0</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Asg0</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   </head>
-
   <body onload="main()">
-    <canvas id="canvas" width="400" height="400">
-    Please use a browser that supports "canvas"
-    </canvas>
+  <div class="section pl-0">
+    <div class="container ml-4">
+        <div class="columns">
+            <div class ="column">
+                <canvas id="canvas" width="400" height="400">
+                    Please use a browser that supports "canvas"
+                 </canvas>
+            </div>
+        </div>
+        <div class="columns pl-3">
+            <label class="is-size-4 pt-2"> v1: x </label>   
+            <div class = "column is-2 mr-2">
+                <input class="input" id="v1-x" type="text" placeholder="v1-x">
+            </div> 
+            <label class="is-size-4 pt-2"> y  </label>   
+            <div class = "column is-2">
+                <input class="input" id="v1-y" type="text" placeholder="v1-y">
+            </div> 
+        </div>
+        <div class="columns pl-3">
+            <label class="is-size-4 pt-2"> v2: x </label>   
+            <div class = "column is-2 mr-2">
+                <input class="input" id="v2-x" type="text" placeholder="v2-x">
+            </div> 
+            <label class="is-size-4 pt-2"> y  </label>   
+            <div class = "column is-2">
+                <input class="input" id="v2-y" type="text" placeholder="v2-y">
+            </div> 
+        </div>
+        <div class = "columns">
+            <div class="column">
+                <button class="button is-primary" id="draw" onclick="handleDrawEvent()"> Draw</button>
+            </div>
+        </div>
+        <div class ="columns">
+            <label class = "is-size-4 pt-2"> Operations: </label>
+            <div class="column is-1">  
+                <div class="select">
+                    <select id="ops" onchange="updateOps()">
+                        <option></option>
+                        <option>Add</option>
+                        <option>Sub</option>
+                        <option>Div</option>
+                        <option>Mul</option>
+                        <option>Area</option>
+                        <option>Magnitude</option>
+                        <option>Angle</option>
+                    </select>
+                </div>      
+            </div>
+            <label class = "is-size-4 pt-2"> Scalar: </label> 
+            <div class = "column is-2">
+                 <input class="input is-2" id="scalar" type="text" placeholder="scalar">
+            </div>
+        </div>
+        <div class = "columns">
+            <div class="column">
+                <button class="button is-primary" id="secondDraw" onclick="handleSecondDrawEvent()"> Draw</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
   </body>
   <script src="asg0.js"></script>
   <script src="lib/cuon-matrix-cse160.js"></script>
