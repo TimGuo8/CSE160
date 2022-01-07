@@ -115,7 +115,9 @@ drawButton2.onclick= function handleSecondDrawEvent(){
             console.log("Angle between is : " + angle);
             break;
         case "Area":
-            Vector3.cross(v1,v2);
+            var v3 = Vector3.cross(v1,v2);
+            console.log(v3);
+            console.log("Area of triangle is : " + v3.magnitude()/2);
             break;
     }
 }
