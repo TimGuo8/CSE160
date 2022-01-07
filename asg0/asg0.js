@@ -55,6 +55,14 @@ function updateOps(){
     var operation = e.options[e.selectedIndex].text;
     return operation;
 }
+function AngleBetween(vec1, vec2){
+    //get the dot product first
+    var dotProduct = Vector3.dot(vec1, vec2);
+    //the product of both magnitude
+    var magnitudeProduct = vec1.magnitude() * vec2.magnitude();
+    var cosTheta = dotProduct/magnitudeProduct;
+    return Math.acos(cosTheta)/Math.PI * 180;
+}
 var drawButton2 = document.getElementById("secondDraw");
 
 drawButton2.onclick= function handleSecondDrawEvent(){
@@ -92,7 +100,22 @@ drawButton2.onclick= function handleSecondDrawEvent(){
             drawVector(v3,"green");
             drawVector(v4,"green");
             break;
+        case "Magnitude":
+            console.log("v1 Magnitude :" + v1.magnitude());
+            console.log("v2 Magnitude :" + v2.magnitude());
+            break;
+        case "Normalize":
+            var v3 = v1.normalize();
+            var v4 = v2.normalize();
+            drawVector(v3,"green");
+            drawVector(v4,"green");           
+            break;
+        case "Angle Between":
+            var angle = AngleBetween(v1,v2);
+            console.log("Angle between is : " + angle);
+            break;
     }
 }
+
 
 

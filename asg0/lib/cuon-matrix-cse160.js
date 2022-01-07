@@ -99,8 +99,7 @@
       */
     static dot(other1, other2) {
         // Insert your code here.
-        let d = 0; // Modify this line to calculate this vector's magnitude.
-
+        let d = other1.elements[0]*other2.elements[0]+ other1.elements[1]*other2.elements[1]; // Modify this line to calculate this vector's magnitude.
         // Don't delete the return statement.
         return d;
     }
@@ -113,7 +112,7 @@
         // Insert your code here.
         // This function should create and return a new vector.
         let v3 = new Vector3(); // Modify this line to calculate cross product between other1 and other2.
-
+        
         // Don't delete the return statement.
         return v3;
     }
@@ -124,7 +123,7 @@
       */
     magnitude() {
         // Insert your code here.
-        let m = 0; // Modify this line to calculate this vector's magnitude.
+        let m = Math.sqrt((this.elements[0]*this.elements[0]+this.elements[1]*this.elements[1])); // Modify this line to calculate this vector's magnitude.
 
         // Don't delete the return statement.
         return m;
@@ -137,7 +136,8 @@
     normalize() {
         // Insert your code here.
         // This function should change this vector (this.elements) and not create a new vector.
-
+        this.elements[0] /= this.magnitude();
+        this.elements[1] /= this.magnitude();
         // Don't delete the return statement.
         return this;
     };
