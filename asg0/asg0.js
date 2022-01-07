@@ -74,7 +74,7 @@ drawButton2.onclick= function handleSecondDrawEvent(){
     var v2_x = document.getElementById("v2-x").value;
     var v2_y = document.getElementById("v2-y").value;
     const v2_obj = {0:v2_x,1:v2_y, 2:0}
-    const v2 = new Vector3(v2_obj);
+    var v2 = new Vector3(v2_obj);
     var operation = updateOps();
     console.log(operation);
       switch(operation){
@@ -113,6 +113,9 @@ drawButton2.onclick= function handleSecondDrawEvent(){
         case "Angle Between":
             var angle = AngleBetween(v1,v2);
             console.log("Angle between is : " + angle);
+            break;
+        case "Area":
+            Vector3.cross(v1,v2);
             break;
     }
 }
