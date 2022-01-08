@@ -66,6 +66,7 @@ function AngleBetween(vec1, vec2){
 var drawButton2 = document.getElementById("secondDraw");
 
 drawButton2.onclick= function handleSecondDrawEvent(){
+    drawCanvas(ctx);
     var scalar = document.getElementById("scalar").value;
     var v1_x = document.getElementById("v1-x").value;
     var v1_y = document.getElementById("v1-y").value;
@@ -75,6 +76,8 @@ drawButton2.onclick= function handleSecondDrawEvent(){
     var v2_y = document.getElementById("v2-y").value;
     const v2_obj = {0:v2_x,1:v2_y, 2:0}
     var v2 = new Vector3(v2_obj);
+    drawVector(v1, "red");
+    drawVector(v2,"blue");
     var operation = updateOps();
     console.log(operation);
       switch(operation){
