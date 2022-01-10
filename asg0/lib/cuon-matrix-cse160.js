@@ -63,6 +63,7 @@
         // This function should change this vector (this.elements) and not create a new vector.
         this.elements[0] -= other.elements[0];
         this.elements[1] -= other.elements[1];
+        this.elements[2] -= other.elements[2];
         // Don't delete the return statement.
         return this;
     };
@@ -76,6 +77,8 @@
         // This function should change this vector (this.elements) and not create a new vector.
         this.elements[0] =  this.elements[0]/scalar;
         this.elements[1] =  this.elements[1]/ scalar;
+        this.elements[2] =  this.elements[2]/ scalar;
+
         // Don't delete the return statement.
         return this;
     };
@@ -89,6 +92,7 @@
         // This function should change this vector (this.elements) and not create a new vector.
         this.elements[0] =  this.elements[0]*scalar;
         this.elements[1] =  this.elements[1] *scalar;
+        this.elements[2] =  this.elements[2] *scalar;
         // Don't delete the return statement.
         return this;
     };
@@ -99,7 +103,7 @@
       */
     static dot(other1, other2) {
         // Insert your code here.
-        let d = other1.elements[0]*other2.elements[0]+ other1.elements[1]*other2.elements[1]; // Modify this line to calculate this vector's magnitude.
+        let d = other1.elements[0]*other2.elements[0]+ other1.elements[1]*other2.elements[1] + other1.elements[2]*other2.elements[2]; // Modify this line to calculate this vector's magnitude.
         // Don't delete the return statement.
         return d;
     }
