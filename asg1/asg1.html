@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ColoredPoints</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body onload="main()">
+<div class="section pl-1 pt-1">
+    <canvas id="webgl" width="400" height="400">
+        Please use the browser supporting "canvas".
+    </canvas>
+    <div class="columns">
+        <div class="column  is-3 ">
+            <t>Shape Color:</t>
+            <p>
+                Red <input type="range" min ="0" max="100" value="100" class="slider" id="redSlide">
+            </p>
+            <p>
+                Green <input type="range" min ="0" max="100" value="0" class="slider" id="greenSlide">
+            </p>
+            <p>
+                Blue <input type="range" min ="0" max="100" value="0" class="slider" id="blueSlide">
+            </p>
+        </div>
+        <div class="column  is-3">
+            <t>Shape Size:</t>
+            <p>
+                Size <input type="range" min ="5" max="40" value="0" class="slider" id="sizeSlide">
+            </p>
+        </div>
+    </div>
+    <div class = "columns">
+        <div class="column">
+            <button class="button is-warning" id="clear" onclick="handleClearEvent()"> Clear Canvas</button>
+        </div>
+    </div>
+</div>
+
+<script src="lib/webgl-utils.js"></script>
+<script src="lib/webgl-debug.js"></script>
+<script src="lib/cuon-utils.js"></script>
+<script src="asg1.js"></script>
+<script src="Point.js"></script>
+
+</body>
