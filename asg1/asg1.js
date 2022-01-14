@@ -62,10 +62,13 @@ function connectVariablesToGLSL(){
     return;
   }
 }
+const POINT = 0;
+const TRIANGLE = 1;
+const CIRCLE = 2; 
 //Globals related to UI elements
 let g_selectedColor = [1.0,0.0,0.0,1.0];
 let g_selectedSize = 5;
-
+let g_selectedType = POINT;
 function addActionsForHtmlUI(){
   //color slider
   document.getElementById("redSlide").addEventListener('mouseup', function() {g_selectedColor[0] = this.value/100});
@@ -75,6 +78,10 @@ function addActionsForHtmlUI(){
   document.getElementById("sizeSlide").addEventListener('mouseup', function() {g_selectedSize = this.value});
   //clear canvas 
   document.getElementById("clear").onclick = function(){g_shapeList=[]; renderAllShapes();};
+  document.getElementById("point").onclick = function(){g_selectedType = POINT;};
+  document.getElementById("triangle").onclick = function(){g_selectedType = TRIANGLE;};
+  document.getElementById("circle").onclick = function(){g_selectedType = CIRCLE;};
+
 
 }
 
@@ -87,7 +94,7 @@ function main() {
     addActionsForHtmlUI();
     // Register function (event handler) to be called on a mouse press
     canvas.onmousedown = click;
-    canvas.onmousemove = function(ev){ console.log(ev); if(ev.buttons == 1) { click(ev); } };
+    canvas.onmousemove = function(ev){ if(ev.buttons == 1) { click(ev); } };
     // Specify the color for clearing <canvas>
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -103,7 +110,14 @@ function click(ev) {
     [x,y] = convertCoordinatesEventToGL(ev);
 
     //create new point to store 
-    let point = new Points();
+    let point;
+    if (g_selectedType == POINT){
+      point = new Points();
+    } else if (g_selectedType == TRIANGLE){
+      point = new Triangles();
+    } else {
+      point = new Circles();
+    }
     point.position = [x,y];
     point.color = g_selectedColor.slice();
     point.size = g_selectedSize;
@@ -147,7 +161,7 @@ function click(ev) {
     for(var i = 0; i < len; i++) {
       g_shapeList[i].render();
   }
-    var duration = performance.now()-startTime;
+   // var duration = performance.now()-startTime;
    // sendTestToHTML("numdot: " + len + "ms: " + Math.floor(duration) +"fps: " + Math.floor(10000/duration), htmlIDHERE);
 }
 //function sendTestToHTML()

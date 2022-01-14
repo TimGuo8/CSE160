@@ -9,7 +9,8 @@ class Points{
       var xy = this.position;
       var rgba = this.color;
       var size = this.size;
-  
+      //quit using the buffer to send the attribute
+      gl.disableVertexAttribArray(a_Position);
       // Pass the position of a point to a_Position variable
       gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
       // Pass the color of a point to u_FragColor variable
@@ -18,5 +19,6 @@ class Points{
       gl.uniform1f(u_Size, size);
       // Draw
       gl.drawArrays(gl.POINTS, 0, 1);
+      
     }
   }
