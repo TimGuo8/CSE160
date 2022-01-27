@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blocky Animal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body onload="main()">
+<div class="section pl-2 pt-2">
+    <div class="columns">
+        <canvas id="webgl" width="400" height="400">
+            Please use the browser supporting "canvas".
+        </canvas>
+    </div>
+        <div class="column  is-3">
+            <p>
+                Camera Angle <input type="range" min ="0" max="360" value="30" class="slider" id="angleSlide">
+            </p>
+        </div>
+        <div class = "columns">
+            <div class="column">
+                <t>Animation:</t>
+                <div class="columns">
+                    <div class="column is-1 mr-2">
+                        <button class="button is-primary is-2" id="AnimationOn" > On</button>
+                    </div>
+                    <div class="column is-1 mr-2">
+                        <button class="button is-warning is-2" id="AnimationOff"> Off</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script src="lib/webgl-utils.js"></script>
+<script src="lib/cuon-matrix-cse160.js"></script>
+<script src="lib/webgl-debug.js"></script>
+<script src="lib/cuon-utils.js"></script>
+<script src="BlockyAnimal.js"></script>
+<script src="Cube.js"></script>
+<script src="Point.js"></script>
+<script src="Triangle.js"></script>
+<script src="renderBodyParts.js"></script>
+<script src="Circle.js"></script>
+
+
+</body>

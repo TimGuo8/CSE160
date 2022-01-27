@@ -73,23 +73,12 @@ let g_selectedSize = 5;
 let g_selectedSegments = 10;
 var g_shapeList = [];
 let g_globalAngle = 0;
+let g_Animation = false
 function addActionsForHtmlUI(){
-  //color slider
-  // document.getElementById("redSlide").addEventListener('mouseup', function() {g_selectedColor[0] = this.value/100});
-  // document.getElementById("greenSlide").addEventListener('mouseup', function() {g_selectedColor[1] = this.value/100});
-  // document.getElementById("blueSlide").addEventListener('mouseup', function() {g_selectedColor[2] = this.value/100});
-  // document.getElementById("alphaSlide").addEventListener('mouseup', function() {g_selectedColor[3] = this.value/100});
-  // //size slider
+   document.getElementById("AnimationOn").onclick = function(){g_Animation = true;};
+   document.getElementById("AnimationOff").onclick = function(){g_Animation = false;};
    document.getElementById("angleSlide").addEventListener('mousemove', function() {g_globalAngle = this.value; renderScene();});
 
-  // //clear canvas 
-  // document.getElementById("clear").onclick = function(){g_shapeList=[]; renderAllShapes();};
-
-  // document.getElementById("point").onclick = function(){g_selectedType = POINT;};
-  // document.getElementById("triangle").onclick = function(){g_selectedType = TRIANGLE;};
-  // document.getElementById("circle").onclick = function(){g_selectedType = CIRCLE;};
-  // document.getElementById("drawPic").onclick = function(){g_shapeList=[]; g_shapeList=displayDrawing(pictureObj); renderAllShapes();};
-  // document.getElementById("eraser").onclick = function(){g_selectedType = CIRCLE; g_selectedColor = [0.0,0.0,0.0,1.0]; g_selectedSize =10;};
 
 }
 
@@ -101,17 +90,32 @@ function main() {
     
     addActionsForHtmlUI();
     // Register function (event handler) to be called on a mouse press
+    canvas.onmousedown=click;
+    canvas.onmousemove = function(ev){ if(ev.buttons == 1) { click(ev); } };
 
     // Specify the color for clearing <canvas>
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
     // Clear <canvas>
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    renderScene();
+    //renderScene();
+    requestAnimationFrame(tick);
 }
-// var g_points = [];  // The array for the position of a mouse press
-// var g_colors = [];  // The array to store the color of a point
-// var g_sizes = [];
+let ev;
+function click(ev){
+  g_globalAngle -= ev.movementX;
+  //ev = ev;
+  renderScene();
+}
+  var g_startTime = performance.now()/1000.0;
+  var g_seconds = performance.now()/1000.0 - g_startTime;
+  function tick(){
+    g_seconds = performance.now()/1000.0 - g_startTime;
+    //console.log(g_startTime);
+    renderScene();
+    requestAnimationFrame(tick);
+
+  }
   function convertCoordinatesEventToGL(ev){
     var x = ev.clientX; // x coordinate of a mouse pointer
     var y = ev.clientY; // y coordinate of a mouse pointer

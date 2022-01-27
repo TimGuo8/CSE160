@@ -6,9 +6,15 @@ function renderBodyParts(){
 
     //lion head
     //head base
+    
     var head = new Cube();
     head.color = [128/255, 75/255, 37/255,1];
-    head.matrix.rotate(30, 1, 0, 0);
+    if(g_Animation === true){
+        head.matrix.rotate(6*Math.sin(g_seconds), 1, 0, 0);
+        pause = g_seconds;
+    }else{
+        head.matrix.rotate(0, 1, 0, 0);
+    }
     var headCoordinatesMat = new Matrix4(head.matrix);
     head.matrix.translate(-0.395, -0.55, -0.21);
     head.matrix.scale(0.75, 0.7, 0.2);
@@ -86,4 +92,45 @@ function renderBodyParts(){
     fr_leg.matrix.scale(0.15, 0.15, 0.25);
     fr_leg.render();
 
+    //front left leg 
+    var fl_leg = new Cube();
+    fl_leg.color = [117/255, 89/255, 46/255,1];
+    fl_leg.matrix = frLegCoordinateMat;
+    var flLegCoordinateMat = new Matrix4(fl_leg);
+    fl_leg.matrix.translate(0.1, -0.5, 0.01);
+    fl_leg.matrix.rotate(90,1,0,0);
+    fl_leg.matrix.scale(0.15, 0.15, 0.25);
+    fl_leg.render();
+
+    //back right leg
+    var br_leg = new Cube();
+    br_leg.color=[117/255, 89/255, 46/255,1];
+    br_leg.matrix.translate(-.25, -0.5, 0.65);
+    br_leg.matrix.rotate(90,1,0,0);
+    br_leg.matrix.scale(0.15, 0.15, 0.25);
+    br_leg.render();
+
+    //back left leg 
+    var bl_leg = new Cube();
+    bl_leg.color=[117/255, 89/255, 46/255,1];
+    bl_leg.matrix.translate(0.1, -0.5, 0.65);
+    bl_leg.matrix.rotate(90,1,0,0);
+    bl_leg.matrix.scale(0.15, 0.15, 0.25);
+    bl_leg.render();
+
+    //tail 
+    var tail = new Cube();
+    tail.color = [204/255, 154/255, 67/255,1];
+    tail.matrix.translate(0,-0.3,0.88);
+    tail.matrix.rotate(-20,1,0,0);
+    tail.matrix.scale(0.05, 0.3, 0.05);
+    tail.render();
+    
+    //tail hair 
+    var tail_hair = new Cube();
+    tail_hair.color = [128/255, 75/255, 37/255,1];
+    tail_hair.matrix.translate(0,-0.34,0.9);
+    tail_hair.matrix.rotate(-10,1,0,0);
+    tail_hair.matrix.scale(0.05,0.05,0.05);
+    tail_hair.render();
 }
