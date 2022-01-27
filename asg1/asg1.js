@@ -69,19 +69,26 @@ const CIRCLE = 2;
 let g_selectedColor = [1.0,0.0,0.0,1.0];
 let g_selectedSize = 5;
 let g_selectedType = POINT;
+let g_selectedSegments = 10;
+var g_shapeList = [];
 function addActionsForHtmlUI(){
   //color slider
   document.getElementById("redSlide").addEventListener('mouseup', function() {g_selectedColor[0] = this.value/100});
   document.getElementById("greenSlide").addEventListener('mouseup', function() {g_selectedColor[1] = this.value/100});
   document.getElementById("blueSlide").addEventListener('mouseup', function() {g_selectedColor[2] = this.value/100});
+  document.getElementById("alphaSlide").addEventListener('mouseup', function() {g_selectedColor[3] = this.value/100});
   //size slider
   document.getElementById("sizeSlide").addEventListener('mouseup', function() {g_selectedSize = this.value});
+  //segment slider
+  document.getElementById("segmentSlide").addEventListener('mouseup', function() {g_selectedSegments = this.value});
   //clear canvas 
   document.getElementById("clear").onclick = function(){g_shapeList=[]; renderAllShapes();};
+
   document.getElementById("point").onclick = function(){g_selectedType = POINT;};
   document.getElementById("triangle").onclick = function(){g_selectedType = TRIANGLE;};
   document.getElementById("circle").onclick = function(){g_selectedType = CIRCLE;};
-
+  document.getElementById("drawPic").onclick = function(){g_shapeList=[]; g_shapeList=displayDrawing(pictureObj); renderAllShapes();};
+  document.getElementById("eraser").onclick = function(){g_selectedType = CIRCLE; g_selectedColor = [0.0,0.0,0.0,1.0]; g_selectedSize =10;};
 
 }
 
@@ -102,13 +109,11 @@ function main() {
     gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
-var g_shapeList = [];
 // var g_points = [];  // The array for the position of a mouse press
 // var g_colors = [];  // The array to store the color of a point
 // var g_sizes = [];
 function click(ev) {
     [x,y] = convertCoordinatesEventToGL(ev);
-
     //create new point to store 
     let point;
     if (g_selectedType == POINT){
@@ -117,12 +122,13 @@ function click(ev) {
       point = new Triangles();
     } else {
       point = new Circles();
+      point.segments = g_selectedSegments;
     }
     point.position = [x,y];
     point.color = g_selectedColor.slice();
     point.size = g_selectedSize;
     g_shapeList.push(point);
-
+    
     // // Store the coordinates to g_points array
     // g_points.push([x, y]);
 
@@ -156,12 +162,23 @@ function click(ev) {
 
     // Clear <canvas>
     gl.clear(gl.COLOR_BUFFER_BIT);
-
+    //console.log(g_shapeList);
     var len = g_shapeList.length;
     for(var i = 0; i < len; i++) {
       g_shapeList[i].render();
   }
-   // var duration = performance.now()-startTime;
-   // sendTestToHTML("numdot: " + len + "ms: " + Math.floor(duration) +"fps: " + Math.floor(10000/duration), htmlIDHERE);
+
 }
-//function sendTestToHTML()
+function displayDrawing(objArray){
+  var temp=[];
+  let point;
+  var len = objArray.length;
+  for(var i = 0; i < len; i++) {
+    point = new Triangles();
+    point.position = objArray[i].position;
+    point.color = objArray[i].color;
+    point.size = objArray[i].size;
+    temp.push(point);
+  }
+  return temp;
+}

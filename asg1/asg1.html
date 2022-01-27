@@ -8,9 +8,14 @@
 </head>
 <body onload="main()">
 <div class="section pl-2 pt-2">
-    <canvas id="webgl" width="400" height="400">
-        Please use the browser supporting "canvas".
-    </canvas>
+    <div class="columns">
+        <canvas id="webgl" width="400" height="400">
+            Please use the browser supporting "canvas".
+        </canvas>
+        <figure class="image is-128x128">
+            <img src="CSE160_Picture.jpg">
+          </figure>
+    </div>
     <div class = "columns">
             <div class="column">
                 <t>Drawing Mode:</t>
@@ -28,7 +33,7 @@
             </div>
     </div>
     <div class="columns">
-        <div class="column  is-3 ">
+        <div class="column  is-2 ">
             <t>Shape Color:</t>
             <p>
                 Red <input type="range" min ="0" max="100" value="100" class="slider" id="redSlide">
@@ -39,17 +44,33 @@
             <p>
                 Blue <input type="range" min ="0" max="100" value="0" class="slider" id="blueSlide">
             </p>
+            <p>
+                Transparency: <input type="range" min ="0" max="100" value="10" class="slider" id="alphaSlide">
+            </p>
         </div>
         <div class="column  is-3">
             <t>Shape Size:</t>
             <p>
-                Size <input type="range" min ="5" max="40" value="0" class="slider" id="sizeSlide">
+                Size <input type="range" min ="5" max="40" value="5" class="slider" id="sizeSlide">
             </p>
+            <t>Segments:</t>
+            <p>
+                (Circles) Segment Count <input type="range" min ="10" max="360" value="10" class="slider" id="segmentSlide">
+            </p>
+        </div>
+        
+    </div>
+    <div class = "columns">
+        <div class="column is-2">
+            <button class="button is-info" id="drawPic" > Draw Picture</button>
+        </div>
+        <div class="column is-3">
+            <button class="button is-error" id="eraser" > eraser</button>
         </div>
     </div>
     <div class = "columns">
         <div class="column">
-            <button class="button is-warning" id="clear" onclick="handleClearEvent()"> Clear Canvas</button>
+            <button class="button is-warning" id="clear" > Clear Canvas</button>
         </div>
     </div>
 </div>
